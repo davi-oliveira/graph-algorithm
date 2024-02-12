@@ -34,17 +34,18 @@ class Graph {
     public static int menorRota(int inicio, int fim) {
         System.out.println("--> " + inicio);
 
-        if (graph[inicio][fim] != 0)
+        if (graph[inicio][fim] != 0){
             return graph[inicio][fim];
+        }
 
-        if (inicio <= 10)
+        if (inicio <= 10){
             if (graph[inicio][inicio + 1] != 0)
                 soma += graph[inicio][inicio + 1] + menorRota(inicio + 1, fim);
             else {
                 inicio++;
                 soma += graph[inicio][inicio + 1] + menorRota(inicio + 1, fim);
             }
-
+        }
         return soma;
 
     }
