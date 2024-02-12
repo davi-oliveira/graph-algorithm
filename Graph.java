@@ -34,17 +34,19 @@ class Graph {
     public static int menorRota(int inicio, int fim) {
         System.out.println("--> " + inicio);
 
-        if (graph[inicio][fim] != 0){
+        if (graph[inicio][fim] != 0) {
+            System.out.println("--> " + fim);
             return graph[inicio][fim];
         }
 
-        if (inicio <= 10){
-            if (graph[inicio][inicio + 1] != 0)
-                soma += graph[inicio][inicio + 1] + menorRota(inicio + 1, fim);
-            else {
-                inicio++;
-                soma += graph[inicio][inicio + 1] + menorRota(inicio + 1, fim);
-            }
+        if (inicio <= 9) {
+            int proximo = inicio;
+            
+            do{
+                proximo++;
+            } while(graph[inicio][proximo] == 0);
+
+            soma += graph[inicio][proximo] + menorRota(proximo, fim);
         }
         return soma;
 
@@ -119,7 +121,7 @@ class Graph {
 
         printGraph(graph);
 
-        System.out.println(menorRota(1, 7));
+        System.out.println(menorRota(1, 6));
 
     }
 }
