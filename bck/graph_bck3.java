@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 class Graph {
-    static int[][] graph;
+    static int[][] graph = new int[13][13];
 
     /*
      * >> CORES
@@ -48,20 +48,7 @@ class Graph {
 
     }
 
-    public static void initializeGraph(int ordem) {
-        graph = new int[ordem + 1][ordem + 1];
-        SystemUtil.fillWithNought(graph);
-        SystemUtil.notifyUser("Grafo criado com sucesso!!");
-    }
-
-    public static void insertVertex(int conteudo, int linha, int coluna) {
-        graph[linha][coluna] = conteudo;
-        graph[coluna][linha] = conteudo;
-        SystemUtil.notifyUser(String.format("Vertice de valor %d criado com sucesso na posicao [%d, %d]",
-                conteudo, linha, coluna));
-    }
-
-    public static int showMenu() {
+    public static void showMenu() {
         SystemUtil.clearTerminal();
         System.out.println("|_____________ Menu _____________|");
         System.out.println("1 - Inicializar grafo");
@@ -71,53 +58,23 @@ class Graph {
         System.out.println("5 - Encontrar rota aleatoria");
         System.out.println("6 - Sair do programa");
         System.out.print("\nDigite a opcao desejada: ");
-
-        Scanner scan = new Scanner(System.in);
-        return scan.nextInt();
     }
 
     public static void main(String[] args) {
+        SystemUtil.fillWithNought(graph);
+
         int option = -1;
         Scanner scan = new Scanner(System.in);
         do {
-            option = showMenu();
+            showMenu();
+            option = scan.nextInt();
 
-            if (option == 1) {
-                System.out.println("Qual a ordem do grafo? ");
-                int ordem = scan.nextInt();
-                initializeGraph(ordem);
-            } else if (option == 2) {
+            if (option == 2) {
                 SystemUtil.clearTerminal();
                 printGraph();
             } else if (option == 3) {
                 SystemUtil.exampleData(graph);
             } else if (option == 4) {
-                if (graph == null) {
-                    SystemUtil.notifyUser("O grafo ainda nao foi criado, crie-o primeiro.");
-                    continue;
-                }
-
-                int linha = 0, coluna = 0, tamanho = graph.length - 1;
-                do {
-                    System.out.println("Digite a linha desejada: ");
-                    linha = scan.nextInt();
-                    System.out.println("Digite a coluna desejada: ");
-                    coluna = scan.nextInt();
-
-                    if (coluna < 1 || coluna < 1 || linha > tamanho || coluna > tamanho)
-                        SystemUtil.notifyUser(String.format("Colunas disponiveis entre 1 e %d", tamanho));
-
-                    if (linha == coluna) {
-                        SystemUtil.notifyUser("Posicao invalida");
-                    }
-
-                } while (linha > tamanho || coluna > tamanho || coluna < 1 || linha < 1 || linha == coluna);
-
-                System.out.println("Digite o valor do vertice: ");
-                int conteudo = scan.nextInt();
-                insertVertex(conteudo, linha, coluna);
-
-            } else if (option == 5) {
                 System.out.println("Qual o vertice origem? ");
                 int origem = scan.nextInt();
 
