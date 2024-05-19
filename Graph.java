@@ -66,10 +66,11 @@ class Graph {
         System.out.println("|_____________ Menu _____________|");
         System.out.println("1 - Inicializar grafo");
         System.out.println("2 - Mostrar grafo atual");
-        System.out.println("3 - Preencher com os dados da aula (ord. 12)");
-        System.out.println("4 - Inserir vertice");
-        System.out.println("5 - Encontrar rota aleatoria");
-        System.out.println("6 - Sair do programa");
+        System.out.println("3 - Preencher com dados de exemplo 1  (ord. 12)");
+        System.out.println("4 - Preencher com dados de exemplo 2 (ord. 6)");
+        System.out.println("5 - Inserir vertice");
+        System.out.println("6 - Encontrar rota aleatoria");
+        System.out.println("8 - Sair do programa");
         System.out.print("\nDigite a opcao desejada: ");
 
         Scanner scan = new Scanner(System.in);
@@ -90,8 +91,12 @@ class Graph {
                 SystemUtil.clearTerminal();
                 printGraph();
             } else if (option == 3) {
-                SystemUtil.exampleData(graph);
+                if (SystemUtil.exampleData(graph))// se foi preenchido corretamente
+                    SystemUtil.notifyUser("Grafo preenchido com os dados de exemplo.");
             } else if (option == 4) {
+                if (SystemUtil.exampleDataOrd(graph))// se foi preenchido corretamente
+                    SystemUtil.notifyUser("Grafo preenchido com os dados de exemplo.");
+            } else if (option == 5) {
                 if (graph == null) {
                     SystemUtil.notifyUser("O grafo ainda nao foi criado, crie-o primeiro.");
                     continue;
@@ -117,7 +122,7 @@ class Graph {
                 int conteudo = scan.nextInt();
                 insertVertex(conteudo, linha, coluna);
 
-            } else if (option == 5) {
+            } else if (option == 6) {
                 System.out.println("Qual o vertice origem? ");
                 int origem = scan.nextInt();
 
@@ -127,7 +132,7 @@ class Graph {
                 System.out.println(findRoute(origem, destino));
                 SystemUtil.waitUser();
             }
-        } while (option != 6);
+        } while (option != 8);
 
         // System.out.println(findRoute(1, 12));
 

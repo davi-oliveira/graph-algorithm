@@ -35,15 +35,52 @@ public class SystemUtil {
         SystemUtil.waitUser();
     }
 
-    public static void exampleData(int[][] graph) {
+    public static boolean exampleDataOrd(int[][] graph){
         if(graph == null){
             notifyUser("O grafo ainda nao foi criado, crie-o primeiro.");
-            return;
+            return false;
+        }
+
+        if(graph.length != 6+1){
+            notifyUser("O grafo de exemplo eh de ordem 6 e o criado atualmente nao." + graph.length);
+            return false;
+        }
+
+        // 1
+        graph[1][2] = 16;
+
+        graph[1][5] = 13;
+
+        // 2
+        graph[2][3] = 12;
+
+        // 3
+        graph[3][4] = 20;
+        
+        graph[3][5] = 9;
+
+        // 5
+        graph[5][2] = 4;
+
+        graph[5][6] = 14;
+
+        // 6
+        graph[6][3] = 7;
+
+        graph[6][4] = 4;
+        
+        return true;
+    }
+
+    public static boolean exampleData(int[][] graph) {
+        if(graph == null){
+            notifyUser("O grafo ainda nao foi criado, crie-o primeiro.");
+            return false;
         }
 
         if(graph.length != 12+1){
             notifyUser("O grafo de exemplo eh de ordem 13 e o criado atualmente nao.");
-            return;
+            return false;
         }
 
         // 1 > 2
@@ -133,5 +170,7 @@ public class SystemUtil {
         // 11 > 12
         graph[11][12] = 10;
         graph[12][11] = 10;
+
+        return true;
     }
 }
