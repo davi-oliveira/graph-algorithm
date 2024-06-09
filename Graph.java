@@ -35,7 +35,7 @@ class Graph {
             return graph[inicio][fim];
         }
 
-        if (inicio <= 9) {
+        if (inicio <= graph[0].length-1) {
             int proximo = inicio;
 
             do {
